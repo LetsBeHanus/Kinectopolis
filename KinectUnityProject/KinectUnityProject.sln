@@ -1,11 +1,13 @@
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2008
-
-Project("{93448FCD-150A-AAF0-ABE0-CFC7C877E6B4}") = "KinectUnityProject", "Assembly-CSharp-firstpass.csproj", "{4576D640-CC72-ED2B-FA79-12E27FABD0F5}"
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinectUnityProject.CSharp.Plugins", "KinectUnityProject.CSharp.Plugins.csproj", "{D49696F2-08A0-7709-69A6-42A4BE43E3F4}"
 EndProject
-Project("{93448FCD-150A-AAF0-ABE0-CFC7C877E6B4}") = "KinectUnityProject", "Assembly-CSharp.csproj", "{8F555372-64A7-383A-E45B-167D94AB8947}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinectUnityProject.CSharp", "KinectUnityProject.CSharp.csproj", "{2B77FFCB-BAB5-2D73-83B1-3A2F901F39EF}"
 EndProject
-Project("{93448FCD-150A-AAF0-ABE0-CFC7C877E6B4}") = "KinectUnityProject", "Assembly-CSharp-Editor-firstpass.csproj", "{EFBF7995-9325-7274-788E-37ECEDC756CD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinectUnityProject.CSharp.Editor.Plugins", "KinectUnityProject.CSharp.Editor.Plugins.csproj", "{689517EE-914E-7081-14B5-BFC30F9F47AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinectUnityProject.CSharp.Editor", "KinectUnityProject.CSharp.Editor.csproj", "{DDABA74D-2980-6393-23E1-A7CF13D65FC8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,23 +15,24 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4576D640-CC72-ED2B-FA79-12E27FABD0F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4576D640-CC72-ED2B-FA79-12E27FABD0F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4576D640-CC72-ED2B-FA79-12E27FABD0F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4576D640-CC72-ED2B-FA79-12E27FABD0F5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8F555372-64A7-383A-E45B-167D94AB8947}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8F555372-64A7-383A-E45B-167D94AB8947}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8F555372-64A7-383A-E45B-167D94AB8947}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8F555372-64A7-383A-E45B-167D94AB8947}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EFBF7995-9325-7274-788E-37ECEDC756CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EFBF7995-9325-7274-788E-37ECEDC756CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EFBF7995-9325-7274-788E-37ECEDC756CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EFBF7995-9325-7274-788E-37ECEDC756CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D49696F2-08A0-7709-69A6-42A4BE43E3F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D49696F2-08A0-7709-69A6-42A4BE43E3F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D49696F2-08A0-7709-69A6-42A4BE43E3F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D49696F2-08A0-7709-69A6-42A4BE43E3F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B77FFCB-BAB5-2D73-83B1-3A2F901F39EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B77FFCB-BAB5-2D73-83B1-3A2F901F39EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B77FFCB-BAB5-2D73-83B1-3A2F901F39EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B77FFCB-BAB5-2D73-83B1-3A2F901F39EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{689517EE-914E-7081-14B5-BFC30F9F47AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{689517EE-914E-7081-14B5-BFC30F9F47AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{689517EE-914E-7081-14B5-BFC30F9F47AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{689517EE-914E-7081-14B5-BFC30F9F47AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDABA74D-2980-6393-23E1-A7CF13D65FC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDABA74D-2980-6393-23E1-A7CF13D65FC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDABA74D-2980-6393-23E1-A7CF13D65FC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDABA74D-2980-6393-23E1-A7CF13D65FC8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Assembly-CSharp.csproj
 	EndGlobalSection
 EndGlobal
