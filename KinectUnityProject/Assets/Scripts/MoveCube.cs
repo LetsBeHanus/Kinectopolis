@@ -3,9 +3,9 @@ using System.Collections;
 using Windows.Kinect;
 
 public class MoveCube : MonoBehaviour {
-    
+
+	public Windows.Kinect.JointType _jointType;
 	public GameObject _bodySourceManager;
-    public float speed;
 	private BodySourceManager _bodyManager;
 
 	// Use this for initialization
@@ -43,30 +43,19 @@ public class MoveCube : MonoBehaviour {
 
 			if (body.IsTracked)
 			{
-				
-                if (body.Joints[JointType.HandRight].Position.Y > body.Joints[JointType.SpineShoulder].Position.Y)
-                {
-                    this.gameObject.GetComponent<Rigidbody>().AddRelativeForce(0.0f, speed, 0.0f, ForceMode.Force);
-                }
-                else if (body.Joints[JointType.HandRight].Position.Y <= body.Joints[JointType.SpineShoulder].Position.Y)
-                {
-                    this.gameObject.GetComponent<Rigidbody>().AddTorque(0.0f, 0.0f, -1.5f);
-                }
-				
-                if (body.Joints[JointType.HandLeft].Position.Y > body.Joints[JointType.SpineShoulder].Position.Y)
-                {
-                    this.gameObject.GetComponent<Rigidbody>().AddRelativeForce(0.0f, speed, 0.0f, ForceMode.Force);
-                }
-                else if (body.Joints[JointType.HandLeft].Position.Y <= body.Joints[JointType.SpineShoulder].Position.Y)
-                {
-                    this.gameObject.GetComponent<Rigidbody>().AddTorque(0.0f, 0.0f, 1.5f);
-                }
+				if (body.HandRightState == HandState.Open) {
+					this.gameObject.transform.position = new Vector3 (1.0f, 0.0f, 0.0f);
+				}
+				if (body.HandLeftState == HandState.Open) {
+					this.gameObject.transform.position = new Vector3 (-1.0f, 0.0f, 0.0f);
+				}
+				if (body.HandLeftState == HandState.Lasso || body.HandRightState == HandState.Lasso) {
+					this.gameObject.transform.position = new Vector3 (0.0f, 2.0f, 0.0f);
+				}
+//				var pos = body.Joints[_jointType].Position;
+//				this.gameObject.transform.position = new Vector3(pos.X, pos.Y, pos.Z);
+//				break;
 			}
 		}
 	}
-
-    void OnCollisionEnter()
-    {
-        this.gameObject.transform.position = new Vector3(0.0f, 1.0f, -0.3f);
-    }
 }
