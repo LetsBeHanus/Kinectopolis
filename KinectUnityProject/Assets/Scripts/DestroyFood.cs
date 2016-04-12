@@ -8,7 +8,7 @@ public class DestroyFood : MonoBehaviour
 	public GameObject foodReference;
 	private Scorer scorer;
 	private Text scoreReference;
-	private int points=1;
+	//private int points=1;
 	private int score;
 
 
