@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
 using Windows.Kinect;
 
 public class MoveSphereWithKinect : MonoBehaviour
@@ -8,12 +7,14 @@ public class MoveSphereWithKinect : MonoBehaviour
 
     public GameObject _bodySourceManager;
     private BodySourceManager _bodyManager;
+    private bool sizeScreen;
     private float t;
-    public Camera camera1;
+    private float armLength;
 
     // Use this for initialization
     void Start()
     {
+        sizeScreen = false;
     }
 
     // Update is called once per frame
@@ -46,20 +47,28 @@ public class MoveSphereWithKinect : MonoBehaviour
 
             if (body.IsTracked)
             {
-                float handx = body.Joints[JointType.HandRight].Position.X;
-                float handy = body.Joints[JointType.HandRight].Position.Y;
-                this.transform.position = (new Vector3(handx * 15, handy * 15, 0.0f));
+                if (!sizeScreen)
+                {
+                    armLength = (Mathf.Abs(body.Joints[JointType.ShoulderLeft].Position.X) + Mathf.Abs(body.Joints[JointType.ShoulderRight].Position.X)) * 2;
+                    sizeScreen = true;
+                }
+                else
+                {
+                    float xPosition = ((body.Joints[JointType.HandRight].Position.X - body.Joints[JointType.ShoulderRight].Position.X) / armLength) * 9.0f;
+                    float yPosition = (body.Joints[JointType.HandRight].Position.Y / armLength) * 5.0f;
+                    gameObject.transform.position = new Vector3(xPosition, yPosition, 0.0f);
+                }
 
             }
         }
     }
 
-    void OnCollisionEnter()
+    void OnTriggerEnter()
     {
         t = Time.time;
     }
 
-    void OnCollisionStay(Collision collision)
+    void OnTriggerStay(Collider collision)
     {
         if(Time.time > t + 2)
         {
