@@ -51,7 +51,6 @@
      <Compile Include="Assets\Scripts\ControlsTest.cs" />
      <Compile Include="Assets\Scripts\CountdownManager.cs" />
      <Compile Include="Assets\Scripts\DestroyFood.cs" />
-     <Compile Include="Assets\Scripts\FollowRock.cs" />
      <Compile Include="Assets\Scripts\Food.cs" />
      <Compile Include="Assets\Scripts\FoodSpawner.cs" />
      <Compile Include="Assets\Scripts\Level1Target.cs" />
@@ -60,7 +59,6 @@
      <Compile Include="Assets\Scripts\MainMenu.cs" />
      <Compile Include="Assets\Scripts\MazeGenerator.cs" />
      <Compile Include="Assets\Scripts\MoveCube.cs" />
-     <Compile Include="Assets\Scripts\MoveProjectile.cs" />
      <Compile Include="Assets\Scripts\MoveSphereWithKinect.cs" />
      <Compile Include="Assets\Scripts\NextLevel.cs" />
      <Compile Include="Assets\Scripts\ProjectileDragging.cs" />
@@ -68,7 +66,6 @@
      <Compile Include="Assets\Scripts\Resetter.cs" />
      <Compile Include="Assets\Scripts\ScoreManager.cs" />
      <Compile Include="Assets\Scripts\Scorer.cs" />
-     <Compile Include="Assets\Scripts\Slingshot.cs" />
      <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />
      <None Include="Assets\Standard Assets\ParticleSystems\ParticleSystemsGuidelines.txt" />
      <None Include="Assets\Standard Assets\Fonts\OpenSans\License!.txt" />
