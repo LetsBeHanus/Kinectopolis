@@ -47,5 +47,10 @@ public class Resetter : MonoBehaviour {
 		//Application.LoadLevel (Application.loadedLevel);
 
 		SceneManager.LoadScene ("Level 1", LoadSceneMode.Single);
+
+
+		//Rename projectiles in each level to level name
+		//have the collider be the scene name
+		//so that it fits with each of the three levels
 	}
 }
