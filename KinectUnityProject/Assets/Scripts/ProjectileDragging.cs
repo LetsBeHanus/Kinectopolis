@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 public class ProjectileDragging : MonoBehaviour {
-	public float maxStretch = 6.0f;
+	public float maxStretch = 5.0f;
 	public LineRenderer slingshotLineFront;
 	public LineRenderer slingshotLineBack;  
 

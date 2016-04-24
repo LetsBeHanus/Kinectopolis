@@ -6,21 +6,11 @@ public class Resetter : MonoBehaviour {
 
 	public Rigidbody2D projectile;			
 	public float resetSpeed = 0.025f;		
-
 	private float resetSpeedSqr;			
 	private SpringJoint2D spring;	
 
-	//create the boundary around scene
-	//if ball is outside the boundary change the scene
 
-
-
-
-
-
-
-	void Start ()
-	{
+	void Start () {
 		resetSpeedSqr = resetSpeed * resetSpeed;
 
 		spring = projectile.GetComponent <SpringJoint2D>();
@@ -32,8 +22,20 @@ public class Resetter : MonoBehaviour {
 		}
 			
 		if (spring == null && projectile.velocity.sqrMagnitude < resetSpeedSqr) {
-			Reset ();
+			ChangeScene ();
+
 		}
+
+		if (projectile.position.x > 100) {
+			ChangeScene ();
+			//Reset ();
+		}
+
+		if (spring == null && projectile.position.y < -9) {
+			ChangeScene ();
+			//Reset ();
+		}
+
 	}
 
 	void OnTriggerExit2D (Collider2D other) {
@@ -44,7 +46,6 @@ public class Resetter : MonoBehaviour {
 
 	void Reset () {
 		
-		//Application.LoadLevel (Application.loadedLevel);
 
 		SceneManager.LoadScene ("Level 1", LoadSceneMode.Single);
 
@@ -52,5 +53,22 @@ public class Resetter : MonoBehaviour {
 		//Rename projectiles in each level to level name
 		//have the collider be the scene name
 		//so that it fits with each of the three levels
+	}
+
+	void ChangeScene () {
+		string sceneName = SceneManager.GetActiveScene ().name;
+
+		if (sceneName == "Level 1") {
+			SceneManager.LoadScene ("Level 2", LoadSceneMode.Single);
+		}
+
+		else if (sceneName == "Level 2") {
+			SceneManager.LoadScene ("Level 3", LoadSceneMode.Single);
+		}
+
+		else if (sceneName == "Level 3") {
+			return;
+		}
+	
 	}
 }

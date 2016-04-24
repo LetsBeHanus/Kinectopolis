@@ -14,6 +14,11 @@ public class ProjectileFollow : MonoBehaviour {
 
 		newPosition.x = Mathf.Clamp (newPosition.x, farLeft.position.x, farRight.position.x);
 
+		if (projectile.position.x > 100) {
+			newPosition.x = 80;
+		}
+
+
 		transform.position = newPosition;
 	}
 }
