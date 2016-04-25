@@ -9,7 +9,6 @@ public class Resetter : MonoBehaviour {
 	private float resetSpeedSqr;			
 	private SpringJoint2D spring;	
 
-
 	void Start () {
 		resetSpeedSqr = resetSpeed * resetSpeed;
 
@@ -17,6 +16,7 @@ public class Resetter : MonoBehaviour {
 	}
 
 	void Update () {
+		//for testing purposes
 		if (Input.GetKeyDown (KeyCode.R)) {
 			Reset ();
 		}
@@ -46,7 +46,6 @@ public class Resetter : MonoBehaviour {
 
 	void Reset () {
 		
-
 		SceneManager.LoadScene ("Level 1", LoadSceneMode.Single);
 
 
@@ -67,8 +66,9 @@ public class Resetter : MonoBehaviour {
 		}
 
 		else if (sceneName == "Level 3") {
-			return;
+			SceneManager.LoadScene ("Main Menu", LoadSceneMode.Single);
 		}
+			
 	
 	}
 }

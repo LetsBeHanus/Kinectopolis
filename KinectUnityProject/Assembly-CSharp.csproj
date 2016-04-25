@@ -53,12 +53,10 @@
      <Compile Include="Assets\Scripts\DestroyFood.cs" />
      <Compile Include="Assets\Scripts\Food.cs" />
      <Compile Include="Assets\Scripts\FoodSpawner.cs" />
-     <Compile Include="Assets\Scripts\Level1Target.cs" />
      <Compile Include="Assets\Scripts\MainMenu.cs" />
      <Compile Include="Assets\Scripts\MazeGenerator.cs" />
      <Compile Include="Assets\Scripts\MoveCube.cs" />
      <Compile Include="Assets\Scripts\MoveSphereWithKinect.cs" />
-     <Compile Include="Assets\Scripts\Projectile.cs" />
      <Compile Include="Assets\Scripts\ProjectileDragging.cs" />
      <Compile Include="Assets\Scripts\ProjectileFollow.cs" />
      <Compile Include="Assets\Scripts\Resetter.cs" />

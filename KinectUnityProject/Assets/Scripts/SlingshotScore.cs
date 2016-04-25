@@ -3,10 +3,10 @@ using System.Collections;
 
 public class SlingshotScore : MonoBehaviour {
 
-	private double hitPoints = 2;					
+	private double hitPoints = 2.5;					
 	private Sprite damagedSprite;				
 	private float damageImpactSpeed;				
-	private double boardHit = 0.5;
+	private double boardHit = 0.25;
 
 	private double currentHitPoints;				
 	private float damageImpactSpeedSqr;			
@@ -21,10 +21,10 @@ public class SlingshotScore : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D (Collision2D collision) {
-		if (collision.collider.tag != "Projectile") {
-			return;
-		}
-	
+//		if (collision.collider.tag != "Projectile") {
+//			return;
+//		}
+//	
 		if (collision.relativeVelocity.sqrMagnitude < damageImpactSpeedSqr) {
 			currentHitPoints--;
 			return;
