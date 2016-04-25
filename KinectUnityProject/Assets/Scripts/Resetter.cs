@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 public class Resetter : MonoBehaviour {
 
 	public Rigidbody2D projectile;			
-	public float resetSpeed = 0.025f;		
+	public float resetSpeed = 0.025f;	
+
 	private float resetSpeedSqr;			
 	private SpringJoint2D spring;	
 
@@ -45,13 +46,9 @@ public class Resetter : MonoBehaviour {
 	}
 
 	void Reset () {
-		
+
 		SceneManager.LoadScene ("Level 1", LoadSceneMode.Single);
 
-
-		//Rename projectiles in each level to level name
-		//have the collider be the scene name
-		//so that it fits with each of the three levels
 	}
 
 	void ChangeScene () {

@@ -7,28 +7,34 @@ public class SlingshotKinectTest : MonoBehaviour {
 
 	// Necessary variables for Kinect implementation
 	public GameObject _bodySourceManager;
+	public GameObject cursor;
+
+
 	private BodySourceManager _bodyManager;
 	private bool sizeScreen;
 	private float t;
 	private float armLength;
 
+	private bool isLockedIn = false; 
+	private HandState leftHand = HandState.Unknown;
+	private HandState rightHand = HandState.Unknown;
+
 	//Necessary variables from ProjectileDragging
-	public float maxStretch = 6.0f;
+	public float maxStretch = 5.0f;
 	public LineRenderer slingshotLineFront;
 	public LineRenderer slingshotLineBack;  
 	private SpringJoint2D spring;
 	private Transform slingshot;
 
 	//private Ray rayToMouse;
-	private Ray rayToOrb;
+	private Ray rayToCursor;
 
 	private Ray leftSlingshotToProjectile;
 	private float maxStretchSqr;
 	private float circleRadius;
 
 
-	//private bool clickedOn;
-	private bool triggerOn;
+	private bool cursorOn;
 
 	private Vector2 prevVelocity;
 
@@ -45,7 +51,7 @@ public class SlingshotKinectTest : MonoBehaviour {
 
 
 		LineRendererSetup ();
-		rayToOrb = new Ray(slingshot.position, Vector3.zero);
+		rayToCursor = new Ray(slingshot.position, Vector3.zero);
 		leftSlingshotToProjectile = new Ray(slingshotLineFront.transform.position, Vector3.zero);
 		maxStretchSqr = maxStretch * maxStretch;
 		CircleCollider2D circle = GetComponent<Collider2D>() as CircleCollider2D;
@@ -54,6 +60,20 @@ public class SlingshotKinectTest : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		//	if left hand is farther left than left shoulder
+		//	then if left hand is open, move projectile where the cursor is
+		//	then if left hand turns to a fist lock in the projectile’s position
+		//		set boolean value to true for locked in position
+		//
+		//			if locked in position is true
+		//		if right hand is farther right than the right shoulder and if the right hand is below the elbow
+		//		if right hand shoots up above the shoulder
+		//			release the projectile and destroy the spring joint
+		//			set aforementioned boolean value to false
+
+
+
 		if (_bodySourceManager == null) {
 			return;
 		}
@@ -85,47 +105,85 @@ public class SlingshotKinectTest : MonoBehaviour {
 					float xPosition = ((body.Joints[JointType.HandRight].Position.X - body.Joints[JointType.ShoulderRight].Position.X) / armLength) * 9.0f;
 					float yPosition = (body.Joints[JointType.HandRight].Position.Y / armLength) * 5.0f;
 					gameObject.transform.position = new Vector3(xPosition, yPosition, 0.0f);
+					if (body.Joints [JointType.HandLeft].Position.X < body.Joints [JointType.ShoulderLeft].Position.X) {
+						if (spring != null) {
+							if (!GetComponent<Rigidbody2D>().isKinematic && prevVelocity.sqrMagnitude > GetComponent<Rigidbody2D>().velocity.sqrMagnitude) {
+								Destroy (spring);
+								GetComponent<Rigidbody2D>().velocity = prevVelocity;
+							}
+						if (body.HandLeftState == HandState.Open) {
+							spring.enabled = false;
+							Dragging ();
+						
+
+//							//Don't necessarily need second if statement, could just track left and right hand movements
+//							if (body.HandLeftState == HandState.Closed) {
+//								lockInPosition ();
+//								isLockedIn = true;
+						} else {
+							prevVelocity = GetComponent<Rigidbody2D> ().velocity;
+
+							LineRendererUpdate ();
+
+							spring.enabled = true;
+							GetComponent<Rigidbody2D>().isKinematic = false;
+
+						}
+
+					} else {
+							slingshotLineFront.enabled = false;
+							slingshotLineBack.enabled = false;
+					}
+						
+					//Change swing motion to something easier
+					if ((body.Joints[JointType.HandRight].Position.X > body.Joints [JointType.ShoulderRight].Position.X) && body.HandRightState == HandState.Open) {
+							if (body.HandRightState == HandState.Lasso) {
+								//Release projectile and destroy the spring joint like a trigger
+							}
+
+//	
+					}
+
 				}
 
+					//		if (cursorOn)
+					//			Dragging ();
+
+//					if (spring != null) {
+//						if (!GetComponent<Rigidbody2D>().isKinematic && prevVelocity.sqrMagnitude > GetComponent<Rigidbody2D>().velocity.sqrMagnitude) {
+//							Destroy (spring);
+//							GetComponent<Rigidbody2D>().velocity = prevVelocity;
+//						}
+
+//					if (!cursorOn) {
+//						prevVelocity = GetComponent<Rigidbody2D> ().velocity;
+//
+//						LineRendererUpdate ();
+//					}
+//					} else {
+//						slingshotLineFront.enabled = false;
+//						slingshotLineBack.enabled = false;
+//					}
+				}
+
+
 			}
 		}
-
-
-
-		if (triggerOn)
-			Dragging ();
-
-		if (spring != null) {
-			if (!GetComponent<Rigidbody2D>().isKinematic && prevVelocity.sqrMagnitude > GetComponent<Rigidbody2D>().velocity.sqrMagnitude) {
-				Destroy (spring);
-				GetComponent<Rigidbody2D>().velocity = prevVelocity;
-			}
-
-			if (!triggerOn)
-				prevVelocity = GetComponent<Rigidbody2D>().velocity;
-
-			LineRendererUpdate ();
-
-		} else {
-			slingshotLineFront.enabled = false;
-			slingshotLineBack.enabled = false;
-		}
+			
 	}
 
-	void OnMouseDown () {
-		spring.enabled = false;
-		triggerOn = true;
-	}
+//	void OnCursorDown () {
+//		spring.enabled = false;
+//	}
+//
+//	void OnCursorUp () {
+//		spring.enabled = true;
+//		GetComponent<Rigidbody2D>().isKinematic = false;
+//	}
 
-	void OnMouseUp () {
-		spring.enabled = true;
-		GetComponent<Rigidbody2D>().isKinematic = false;
-		triggerOn = false;
-	}
-
-	void OnTriggerEnter() {
-		t = Time.time;
-	}
+//	void OnTriggerEnter() {
+//		t = Time.time;
+//	}
 
 	void LineRendererSetup () {
 		slingshotLineFront.SetPosition(0, slingshotLineFront.transform.position);
@@ -138,22 +196,20 @@ public class SlingshotKinectTest : MonoBehaviour {
 		Vector2 slingshotToMouse = mouseWorldPoint - slingshot.position;
 
 		if (slingshotToMouse.sqrMagnitude > maxStretchSqr) {
-			rayToOrb.direction = slingshotToMouse;
-			mouseWorldPoint = rayToOrb.GetPoint(maxStretch);
+			rayToCursor.direction = slingshotToMouse;
+			mouseWorldPoint = rayToCursor.GetPoint(maxStretch);
 		}
 
 		mouseWorldPoint.z = 0f;
 		transform.position = mouseWorldPoint;
 	}
 
-	void OnTriggerStay(Collider collision) {
-		if(Time.time > t + 2) {
-			Dragging ();
-
-
-
-		}
-	}
+//	void OnTriggerStay(Collider collision) {
+//		if(Time.time > t + 2) {
+//			Dragging ();
+//
+//		}
+//	}
 
 	void LineRendererUpdate () {
 		Vector2 slingshotToProjectile = transform.position - slingshotLineFront.transform.position;
@@ -161,10 +217,6 @@ public class SlingshotKinectTest : MonoBehaviour {
 		Vector3 holdPoint = leftSlingshotToProjectile.GetPoint(slingshotToProjectile.magnitude + circleRadius);
 		slingshotLineFront.SetPosition(1, holdPoint);
 		slingshotLineBack.SetPosition(1, holdPoint);
-	}
-
-	void onTriggerExit(Collider other) {
-		
 	}
 
 }

@@ -17,8 +17,7 @@ public class ProjectileFollow : MonoBehaviour {
 		if (projectile.position.x > 100) {
 			newPosition.x = 80;
 		}
-
-
+			
 		transform.position = newPosition;
 	}
 }

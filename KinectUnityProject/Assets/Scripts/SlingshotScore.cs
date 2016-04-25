@@ -3,14 +3,14 @@ using System.Collections;
 
 public class SlingshotScore : MonoBehaviour {
 
-	private double hitPoints = 2.5;					
+	private double hitPoints = 2.0;	
 	private Sprite damagedSprite;				
 	private float damageImpactSpeed;				
 	private double boardHit = 0.25;
-
 	private double currentHitPoints;				
 	private float damageImpactSpeedSqr;			
-	private SpriteRenderer spriteRenderer;		
+	private SpriteRenderer spriteRenderer;	
+	private int totalScore = 0;
 
 	void Start () {
 		spriteRenderer = GetComponent <SpriteRenderer> ();
@@ -21,22 +21,19 @@ public class SlingshotScore : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D (Collision2D collision) {
-//		if (collision.collider.tag != "Projectile") {
-//			return;
-//		}
-//	
+
 		if (collision.relativeVelocity.sqrMagnitude < damageImpactSpeedSqr) {
 			currentHitPoints--;
 			return;
 		}
+
 		if (collision.collider.tag == "Projectile") {
 			currentHitPoints--;
 			if (currentHitPoints <= 0) {
 				Kill ();
 			}
 		}
-
-
+			
 		if (collision.collider.tag == "Board") {
 			currentHitPoints -= boardHit;
 			if (currentHitPoints <= 0) {
@@ -57,5 +54,6 @@ public class SlingshotScore : MonoBehaviour {
 		spriteRenderer.enabled = false;
 		GetComponent<Collider2D>().enabled = false;
 		GetComponent<Rigidbody2D>().isKinematic = true;
+		totalScore++;
 	}
 }
