@@ -192,6 +192,9 @@ public class SlingshotKinectTest : MonoBehaviour {
 	}
 
 	void Dragging () {
+
+
+		//Vector3 = cursorWorldPoint = gameObject.transform.position = new Vector3(cursor.GetComponent<P, yPosition, 0.0f);
 		Vector3 mouseWorldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		Vector2 slingshotToMouse = mouseWorldPoint - slingshot.position;
 
