@@ -9,7 +9,7 @@ public class DestroyFood : MonoBehaviour
 	public GameObject foodReference;
 	private Scorer scorer;
 	//private int points=1;
-	//private int score;
+	public static int score;
 	public string strike;
 
 
@@ -62,9 +62,10 @@ public class DestroyFood : MonoBehaviour
 
 		void OnTriggerEnter(Collider col)
 		{
-		if (col.gameObject.name=="Slicer") 
+			if (col.gameObject.name=="Slicer") 
 			{
 				Destroy (foodReference);
+				score += 1;
 			}
 		}
 

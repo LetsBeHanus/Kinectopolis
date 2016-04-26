@@ -16,8 +16,8 @@ public class Timer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		timer += Time.deltaTime;
-		int n=(int)timer;
-		scoreReference.text ="Score: "+n.ToString();
+		//timer += Time.deltaTime;
+		//int n=(int)timer;
+		scoreReference.text ="Score: "+DestroyFood.score;//n.ToString();
 	}
 }
