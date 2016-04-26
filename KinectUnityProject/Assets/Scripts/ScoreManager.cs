@@ -4,17 +4,18 @@ using System.Collections;
 
 public class ScoreManager : MonoBehaviour {
 
-    public GameObject player;
-    private Text textBox;
+	private Text strikeReference;
+
 
     void Start()
     {
-        textBox = GetComponent<Text>();
+		
+		strikeReference = GameObject.Find ("Text2").GetComponent<Text>();
     }
 
     void Update()
     {
-        textBox.text = "Score: " + (int)player.transform.position.y;
+		strikeReference.text = "Strikes: " + StrikeCounter.strikes;
     }
 
 }

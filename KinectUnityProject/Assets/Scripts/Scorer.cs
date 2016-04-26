@@ -5,14 +5,17 @@ using System.Collections;
 public class Scorer : MonoBehaviour 
 {
 	public GameObject food;
-	private int score;
+	private string score;
 	private Text textBox;
-	void Start () 
-	{
-		//score = 0;
-		//UpdateScore ();
-		//textBox = GetComponent<Text> ();
 
+	public void incrementScore()
+	{
+		this.score += "X";
+	}
+
+	public string getScore()
+	{
+		return this.score;
 	}
 	
 	//public void AddScore(int newScore)

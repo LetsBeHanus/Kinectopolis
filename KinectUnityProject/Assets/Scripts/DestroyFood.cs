@@ -4,48 +4,70 @@ using System.Collections;
 
 public class DestroyFood : MonoBehaviour 
 {
-	//private Text scoreReference;
+	//private Text strikeReference;
+
 	public GameObject foodReference;
 	private Scorer scorer;
-	private Text scoreReference;
 	//private int points=1;
-	private int score;
+	//private int score;
+	public string strike;
 
 
 	void Start()
 	{
-		score = 1;
-		scoreReference = GameObject.Find ("Text").GetComponent<Text>();
+		
+		strike = "";
+		//score = 1;
+		//strikeReference = GameObject.Find ("Text2").GetComponent<Text>();
 	}
-	void OnTriggerEnter(Collider col)
-	{
-		if(col.gameObject.name=="Line")
-		{
+	//void OnTriggerEnter(Collider col)
+	//{
+		//if(col.gameObject.name=="Line")
+		//{
 			
 			//Destroy (foodReference);
 			//scoreReference.text ="Score: "+(score+=1).ToString();
-		}
+		//}
 
 
-	}
-	void OnTriggerExit(Collider col)
+	//}
+	void Update()
 	{
-		//points = 1;
-		if (col.gameObject.name == "Line") 
+//		float position = foodReference.transform.position.y;
+//		if (position<= -10) 
+//		{
+//			strike = strike + "X";
+//			Destroy (foodReference);
+//			strikeReference.text = "Strikes: " + strike;
+//		}
+	}
+
+//	void OnTriggerExit(Collider col)
+//	{
+//		//points = 1;
+//		if (col.gameObject.name == "Line") {
+//			//points--;
+//			//if (points > -1) 
+//			//{
+//			Destroy (foodReference);
+//			//scoreReference.text ="Score: "+score.ToString();
+//
+//
+//			//}
+//			//Destroy (foodReference);
+//			//score += 1;
+//
+//		}
+//	}
+
+		void OnTriggerEnter(Collider col)
 		{
-			//points--;
-			//if (points > -1) 
-			//{
-			Destroy (foodReference);
-			scoreReference.text ="Score: "+score.ToString();
-
-
-			//}
-			//Destroy (foodReference);
-			//score += 1;
-
+		if (col.gameObject.name=="Slicer") 
+			{
+				Destroy (foodReference);
+			}
 		}
 
 
-	}
+
 }	
